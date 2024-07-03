@@ -1,0 +1,96 @@
+<section class="background" style="background-color: #483D8B;">
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <i class="bi bi-check-lg"></i> Aggiungi una nuova ricetta
+    </div>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="form-group">
+          <label for="titolo">Titolo</label>
+          <div class="space"></div>
+          <input type="text" class="form-control" id="titolo" placeholder="Inserisci il titolo della tua ricetta"
+                 [(ngModel)]="ricetta.title" name="title" required #title="ngModel">
+          <div class="space"></div>
+          <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle"></i> Il titolo è obbligatorio.
+          </div>
+
+          <label for="description">Descrizione (max 500 caratteri)</label>
+          <div class="space"></div>
+          <textarea class="form-control" id="description" rows="3" [(ngModel)]="ricetta.description" name="description" maxlength="499" required #description="ngModel"></textarea>
+          <div class="space"></div>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle"></i> La descrizione è obbligatoria e deve essere inferiore a 500 caratteri.
+          </div>
+
+          <div class="space"></div>
+          <label for="foto">Carica Copertina</label>
+          <div class="space"></div>
+          <input type="file" class="form-control" id="foto" (change)="onImageSelected($event,1)">
+          <div class="space"></div>
+          <div class="foto-preview-container" *ngIf="ricetta.immagineUrl">
+            <img [src]="ricetta.immagineUrl" alt="Anteprima Immagine" class="img-thumbnail">
+          </div>
+
+          <label for="foto2">Carica immagine</label>
+          <div class="space"></div>
+          <input type="file" class="form-control" id="foto2" (change)="onImageSelected($event, 2)">
+          <div class="space"></div>
+          <div class="foto-preview-container" *ngIf="ricetta.immagineUrl2">
+            <img [src]="ricetta.immagineUrl2" alt="Anteprima Immagine" class="img-thumbnail">
+          </div>
+
+          <label for="foto3">Carica immagine</label>
+          <div class="space"></div>
+          <input type="file" class="form-control" id="foto3" (change)="onImageSelected($event, 3)">
+          <div class="space"></div>
+          <div class="foto-preview-container" *ngIf="ricetta.immagineUrl3">
+            <img [src]="ricetta.immagineUrl3" alt="Anteprima Immagine" class="img-thumbnail">
+          </div>
+
+          <div class="space mb-3"></div>
+          <!-- Lista dinamica degli ingredienti -->
+          <div *ngFor="let ingrediente of ricetta.listaIngredienti; let i = index">
+            <div class="row mb-3">
+              <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="ingrediente.nome" placeholder="Nome dell'ingrediente" name="nomeingrediente" required>
+              </div>
+              <div class="col">
+                <div class="input-group">
+                  <input type="number" class="form-control" [(ngModel)]="ingrediente.quantita" placeholder="Quantità" min="0" name="quantitaingrediente" required>
+                  <select class="form-control bg-light" [(ngModel)]="ingrediente.tipoQuantita" name="tipoquantitaingrediente" required>
+                    <option value="grammi">grammi</option>
+                    <option value="chilogrammi">kg</option>
+                    <option value="litri">litri</option>
+                    <option value="millilitri">ml</option>
+                    <option value="cucchiai">cucchiai</option>
+                    <option value="empty"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-danger" (click)="rimuoviIngrediente(i)">Rimuovi</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pulsante per aggiungere un nuovo ingrediente -->
+          <div class="mb-3">
+            <button type="button" class="btn btn-primary" (click)="aggiungiIngrediente()">Aggiungi Ingrediente</button>
+          </div>
+
+          <!-- Pulsante Salva posizionato sulla destra -->
+          <div class="d-flex justify-content-end mb-3">
+            <button type="submit" class="btn btn-success" [disabled]="!form.valid || formSubmitted">Salva Ricetta</button>
+          </div>
+          <div class="alert alert-success" *ngIf="formSubmitted">
+            {{ successMessage }}
+          </div>
+        </div>
+      </form>
+      <div class="space"></div>
+      </div>
+  </div>
+</div>
+</section>

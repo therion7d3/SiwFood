@@ -1,0 +1,93 @@
+<section class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #483D8B;">
+  <div class="container">
+    <div class="card shadow-lg p-4 animate__animated animate__fadeIn">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">
+          <i class="bi bi-person-circle"></i> Profilo del cuoco: {{ userInfo.nome }}
+        </h3>
+        <form>
+          <!-- Campo per l'immagine profilo -->
+          <div class="mb-3 d-flex justify-content-center align-items-center" *ngIf="editing">
+            <label for="inputImage" class="form-label">
+              <i class="bi bi-image-fill me-2"></i> Carica Immagine Profilo
+            </label>
+            <div class="input-group">
+              <input type="file" id="inputImage" class="form-control-file d-none" (change)="onFileChange($event)" hidden>
+              <label for="inputImage" class="btn btn-secondary btn-upload">
+                <i class="bi bi-cloud-upload"></i> Scegli File
+              </label>
+            </div>
+          </div>
+
+          <!-- Campi dati utente -->
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">
+              <i class="bi bi-envelope-fill me-2"></i> Email
+            </label>
+            <input type="email" id="inputEmail" class="form-control" [(ngModel)]="userInfo.email" name="email" [disabled]="!editing">
+          </div>
+          <div class="mb-3">
+            <label for="inputNome" class="form-label">
+              <i class="bi bi-person-fill me-2"></i> Nome
+            </label>
+            <input type="text" id="inputNome" class="form-control" [(ngModel)]="userInfo.nome" name="nome" [disabled]="!editing">
+          </div>
+          <div class="mb-3">
+            <label for="inputCognome" class="form-label">
+              <i class="bi bi-person-fill me-2"></i> Cognome
+            </label>
+            <input type="text" id="inputCognome" class="form-control" [(ngModel)]="userInfo.cognome" name="cognome" [disabled]="!editing">
+          </div>
+          <div class="mb-3">
+            <label for="inputDataNascita" class="form-label">
+              <i class="bi bi-calendar-fill me-2"></i> Data di Nascita
+            </label>
+            <input type="date" id="inputDataNascita" class="form-control" [(ngModel)]="userInfo.dataNascita" name="dataNascita" [disabled]="!editing">
+          </div>
+
+          <!-- Pulsanti -->
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary rounded-pill mb-2" (click)="modifica()" *ngIf="isUtenteCorrente() && !editing">
+              <i class="bi bi-pencil-fill me-2"></i> Modifica
+            </button>
+            <a href="/myrecipes" class="btn btn-success rounded-pill mb-2" *ngIf="!editing && isUtenteCorrente()">
+              <i class="bi bi-book-fill me-2"></i> Le mie ricette
+            </a>
+            <button type="button" class="btn btn-danger rounded-pill mb-2" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" *ngIf="editing">
+              <i class="bi bi-trash-fill me-2"></i> Elimina Profilo
+            </button>
+            <button type="button" class="btn btn-danger mb-2" data-bs-dismiss="modal" (click)="eliminaProfilo()" *ngIf="isAmministratore() && !isUtenteCorrente()">
+              <i class="bi bi-trash-fill me-2"></i> Elimina Profilo
+            </button>
+            <button type="submit" class="btn btn-success rounded-pill mb-2" (click)="salva()" *ngIf="editing">
+              <i class="bi bi-check-circle-fill me-2"></i> Salva
+            </button>
+            <button type="button" class="btn btn-secondary rounded-pill mb-2" (click)="annulla()" *ngIf="editing">
+              <i class="bi bi-x-circle-fill me-2"></i> Annulla
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal per la conferma di eliminazione -->
+  <div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-labelledby="deleteProfileModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteProfileModalLabel">Conferma Eliminazione Profilo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Sei sicuro di voler eliminare il tuo profilo? Questa azione non può essere annullata.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminaProfilo()">Elimina Profilo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

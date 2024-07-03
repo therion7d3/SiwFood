@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.background {
+  min-height: 100vh; /* Altezza minima del 100% del viewport */
+  background-color: #483D8B;
+  padding-bottom: 20px; /* Aggiungi padding in basso per spazio tra la section e il footer */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: calc(100% - 20px);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #ed9233;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  margin-bottom: 10px; /* Aggiungi spazio sotto il titolo */
+}
+
+
+.card-text {
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.card-author {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 250px;
+  width: auto;
+  height: auto;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
+  justify-content: center;
+  margin-top: 10px; /* Aggiungi spazio sopra l'immagine */
+}
+
+.space { margin:0; padding:0; height:50px; }
+
+.pulsanti {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-view-recipe,
+.btn-delete-recipe {
+  border-radius: 20px; /* Rende i pulsanti arrotondati */
+  margin-left: 10px; /* Aggiunge spazio tra i pulsanti */
+  padding: 8px 16px; /* Ridotto il padding per rendere i pulsanti più compatti */
+  min-width: 120px; /* Ridotto la larghezza minima per rendere i pulsanti più compatti */
+  text-align: center; /* Centra il testo all'interno del pulsante */
+}
+
+.btn-add-recipe {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}

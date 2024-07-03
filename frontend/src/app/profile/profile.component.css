@@ -1,0 +1,71 @@
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  margin-bottom: 1rem;
+}
+
+.custom-card {
+  width: 800px; /* Imposta la larghezza desiderata per la card */
+  max-width: 80%; /* Imposta la larghezza massima in percentuale della viewport */
+  padding: 20px; /* Spaziatura interna della card */
+  margin-top: 50px; /* Distanza dal top della pagina */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  border-radius: 8px; /* Bordo arrotondato */
+  background-color: #fff; /* Colore di sfondo bianco */
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    width: 90%; /* Occupa il 90% della larghezza disponibile */
+    max-width: none; /* Rimuove il limite massimo di larghezza */
+    margin-top: 20px; /* Riduce la distanza dal top */
+  }
+}
+
+.card-body {
+  padding: 20px; /* Spaziatura interna del corpo della card */
+}
+
+.imagePreview {
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  margin: 0 auto 20px;
+}
+
+.pfp{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.arrotonda {
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.form-control {
+  height: 50px;
+  border-radius: 25px;
+}
+
+.form-control-file {
+  height: 50px;
+  border-radius: 25px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.form-control-file {
+  height: 50px;
+  border-radius: 25px;
+}
+
+.d-flex .btn {
+  margin-left: 10px; /* Aggiunge spazio tra i pulsanti */
+}

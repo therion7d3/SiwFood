@@ -1,0 +1,43 @@
+.custom-bg {
+  background: linear-gradient(to bottom, #483D8B, #483D8B); /* Gradient viola */
+  min-height: 100vh;
+  color: #000000; /* Testo nero */
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9); /* Background trasparente */
+}
+
+.btn-rectangular {
+  border-radius: 0; /* Senza bordi arrotondati */
+}
+
+/* Stili aggiuntivi per il titolo */
+.custom-title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 3rem; /* Distanza inferiore dal titolo al resto del contenuto */
+}
+
+.custom-title h1 {
+  font-size: 3.5rem; /* Dimensione del titolo */
+  font-weight: bold;
+  color: #fff; /* Testo bianco */
+  background-color: rgba(255, 255, 255, 0.8); /* Sfondo trasparente */
+  padding: 1rem 2rem; /* Padding intorno al testo */
+  display: inline-block; /* Mostra come blocco inline */
+  border-radius: 0.5rem; /* Bordi arrotondati */
+  position: relative;
+}
+
+.custom-title h1::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}

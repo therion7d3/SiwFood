@@ -1,0 +1,130 @@
+<section class="background" style="background-color: #483D8B;">
+    <div *ngIf="ricetta">
+      <div class="card text-black mb-3">
+        <div class="card-header text-white bg-dark text-center">
+          <h1>{{ editMode ? 'Modifica Ricetta' : ricetta.title }}</h1>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!editMode">
+            <h5 class="card-title text-center">Autore: {{ ricetta.authorName }}</h5>
+            <div class="text-center">
+              <a href="/chef/{{ ricetta.authorId }}" class="btn btn-outline-dark btn-sm rounded-pill">
+                <i class="bi bi-person-circle"></i> Visualizza Profilo
+              </a>
+            </div>
+            <div *ngIf="ricetta.immagineUrl" class="my-3">
+              <img [src]="ricetta.immagineUrl" alt="Immagine ricetta" class="card-img-top img-fluid rounded">
+            </div>
+            <p class="card-text">{{ ricetta.description }}</p>
+            <div *ngIf="ricetta.immagineUrl2" class="my-3">
+              <img [src]="ricetta.immagineUrl2" alt="Seconda immagine" class="card-img-top img-fluid rounded">
+            </div>
+            <ul class="list-unstyled" *ngIf="ricetta.listaIngredienti && ricetta.listaIngredienti.length > 0">
+              <li *ngFor="let ingrediente of ricetta.listaIngredienti" class="mb-2">
+                <span>{{ ingrediente.nome }} - {{ ingrediente.quantita }} {{ ingrediente.tipoQuantita }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Form di Modifica -->
+          <form *ngIf="editMode" #form="ngForm">
+            <div class="mb-3">
+              <label for="title" class="form-label">Titolo</label>
+              <input type="text" class="form-control" id="title" [(ngModel)]="ricettaModificata.title" name="title" maxlength="244" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Descrizione</label>
+              <textarea class="form-control" id="description" rows="3" [(ngModel)]="ricettaModificata.description" name="description" maxlength="499" required></textarea>
+              <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)" class="text-danger">
+                La descrizione è obbligatoria e deve essere inferiore a 500 caratteri.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="foto1" class="form-label">Immagine principale</label>
+              <input type="file" id="foto1" class="form-control" (change)="onImageSelected($event, 1)">
+              <img *ngIf="ricettaModificata.immagineUrl" [src]="ricettaModificata.immagineUrl" alt="Immagine principale" class="img-fluid mt-2 rounded">
+            </div>
+
+            <div class="mb-3">
+              <label for="foto2" class="form-label">Seconda immagine</label>
+              <input type="file" id="foto2" class="form-control" (change)="onImageSelected($event, 2)">
+              <img *ngIf="ricettaModificata.immagineUrl2" [src]="ricettaModificata.immagineUrl2" alt="Seconda immagine" class="img-fluid mt-2 rounded">
+            </div>
+
+            <ul class="list-unstyled" *ngIf="ricettaModificata.listaIngredienti">
+              <li *ngFor="let ingrediente of ricettaModificata.listaIngredienti; let i = index" class="mb-3">
+                <div class="row align-items-center">
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" [(ngModel)]="ingrediente.nome" name="nome{{i}}" placeholder="Nome" required>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="number" class="form-control" [(ngModel)]="ingrediente.quantita" name="quantita{{i}}" placeholder="Quantità" min="0.1" required>
+                  </div>
+                  <div class="col-md-3">
+                    <select class="form-select" [(ngModel)]="ingrediente.tipoQuantita" name="tipoQuantita{{i}}" required>
+                      <option *ngFor="let tipo of tipiQuantita" [value]="tipo">{{ tipo }}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-1">
+                    <button class="btn btn-danger btn-sm rounded-pill" (click)="removeIngredient(i)">
+                      Rimuovi
+                    </button>
+                  </div>
+                </div>
+                <div class="row mt-1" *ngIf="ingrediente.nome === '' || ingrediente.quantita < 0.1 || ingrediente.tipoQuantita === ''">
+                  <div class="col-md-12">
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                      <i class="bi bi-exclamation-triangle-fill me-2"></i> Tutti i campi devono essere riempiti
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                <i class="bi bi-trash"></i> Elimina Ricetta
+              </button>
+              <button class="btn btn-primary" (click)="saveChanges()" [disabled]="!form.valid">
+                <i class="bi bi-check-circle"></i> Salva
+              </button>
+              <button class="btn btn-secondary ms-2" (click)="cancelEdit()">
+                <i class="bi bi-x-circle"></i> Annulla
+              </button>
+            </div>
+          </form>
+
+          <!-- Pulsante Modifica -->
+          <div class="d-flex justify-content-end" *ngIf="isAuthor() && !editMode">
+            <button class="btn btn-primary" (click)="toggleEditMode()">
+              <i class="bi bi-pencil"></i> Modifica
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal di Conferma Eliminazione -->
+      <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione Ricetta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler eliminare questa ricetta?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Annulla
+              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminaRicetta()">
+                Elimina
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

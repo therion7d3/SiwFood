@@ -1,0 +1,34 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #483D8B;
+  padding-bottom: 20px;
+}
+
+.container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.space { margin:0; padding:0; height:10px; }
+
+.image-preview-container {
+  width: 100px;
+  height: 250px;
+  overflow: hidden;
+}
+
+.image-preview-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

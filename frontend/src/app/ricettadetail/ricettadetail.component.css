@@ -1,0 +1,74 @@
+.background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #483D8B;
+  padding-bottom: 20px;
+}
+
+.card-list {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.card-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.space {
+  margin-bottom: 20px; /* Incrementa lo spazio tra le sezioni */
+}
+
+.minispace {
+  margin-bottom: 10px; /* Incrementa lo spazio minore tra i componenti */
+}
+
+.form-control {
+  height: 40px; /* Riduci l'altezza degli input a 40px */
+  padding: 10px 15px; /* Applica un padding più contenuto */
+  font-size: 14px; /* Riduci la dimensione del carattere */
+  border-radius: 25px;
+}
+
+.rounded-pill {
+  border-radius: 1.5rem; /* Applica un raggio di 1.5rem (circa 24px) ai bordi */
+}
+
+.card-list .card {
+  min-height: 400px; /* Altezza minima della card */
+  margin-bottom: 20px; /* Spazio tra le card */
+}
+
+.image-placeholder {
+  min-height: 200px; /* Altezza minima dell'immagine placeholder */
+  min-width: 700px;
+  background-color: #f0f0f0; /* Colore di sfondo */
+}
