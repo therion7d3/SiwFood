@@ -36,7 +36,7 @@ export class RicettadetailComponent implements OnInit{
   editMode = false;
   formSubmitted : boolean = false;
   success: boolean = false;
-  tipiQuantita: string[] = ['grammi', 'kg', 'litri', 'ml', 'cucchiai', ' '];
+  tipiQuantita: string[] = ['chilogrammi', 'litri', 'qb', 'pezzi', ' '];
   imagePreview: string | ArrayBuffer | null = null;
   file1 : any;
   file2 : any;
