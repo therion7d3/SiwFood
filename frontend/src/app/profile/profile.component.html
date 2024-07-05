@@ -47,22 +47,22 @@
 
           <!-- Pulsanti -->
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-primary rounded-pill mb-2" (click)="modifica()" *ngIf="isUtenteCorrente() && !editing">
+            <button type="button" class="btn btn-outline-dark btn-sm rounded-pill" (click)="modifica()" *ngIf="isUtenteCorrente() && !editing">
               <i class="bi bi-pencil-fill me-2"></i> Modifica
             </button>
-            <a href="/myrecipes" class="btn btn-success rounded-pill mb-2" *ngIf="!editing && isUtenteCorrente()">
+            <a href="/myrecipes" class="btn btn-outline-secondary btn-sm rounded-pill" *ngIf="!editing && isUtenteCorrente()">
               <i class="bi bi-book-fill me-2"></i> Le mie ricette
             </a>
-            <button type="button" class="btn btn-danger rounded-pill mb-2" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" *ngIf="editing">
+            <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" *ngIf="editing">
               <i class="bi bi-trash-fill me-2"></i> Elimina Profilo
             </button>
-            <button type="button" class="btn btn-danger mb-2" data-bs-dismiss="modal" (click)="eliminaProfilo()" *ngIf="isAmministratore() && !isUtenteCorrente()">
+            <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" data-bs-dismiss="modal" (click)="eliminaProfilo()" *ngIf="isAmministratore() && !isUtenteCorrente()">
               <i class="bi bi-trash-fill me-2"></i> Elimina Profilo
             </button>
-            <button type="submit" class="btn btn-success rounded-pill mb-2" (click)="salva()" *ngIf="editing">
+            <button type="submit" class="btn btn-outline-dark btn-sm rounded-pill" (click)="salva()" *ngIf="editing">
               <i class="bi bi-check-circle-fill me-2"></i> Salva
             </button>
-            <button type="button" class="btn btn-secondary rounded-pill mb-2" (click)="annulla()" *ngIf="editing">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" (click)="annulla()" *ngIf="editing">
               <i class="bi bi-x-circle-fill me-2"></i> Annulla
             </button>
           </div>
@@ -84,8 +84,8 @@
           Sei sicuro di voler eliminare il tuo profilo? Questa azione non può essere annullata.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminaProfilo()">Elimina Profilo</button>
+          <button type="button" class="btn btn-outline-dark btn-sm rounded-pill" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" data-bs-dismiss="modal" (click)="eliminaProfilo()">Elimina Profilo</button>
         </div>
       </div>
     </div>

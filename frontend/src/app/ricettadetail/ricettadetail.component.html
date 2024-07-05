@@ -36,7 +36,7 @@
               <label for="description" class="form-label">Descrizione</label>
               <textarea class="form-control" id="description" rows="3" [(ngModel)]="ricettaModificata.description" name="description" maxlength="499" required></textarea>
               <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)" class="text-danger">
-                La descrizione è obbligatoria e deve essere inferiore a 500 caratteri.
+                Inserire una descrizione.
               </div>
             </div>
 
@@ -67,7 +67,7 @@
                     </select>
                   </div>
                   <div class="col-md-1">
-                    <button class="btn btn-danger btn-sm rounded-pill" (click)="removeIngredient(i)">
+                    <button class="btn btn-outline-danger btn-sm rounded-pill" (click)="removeIngredient(i)">
                       Rimuovi
                     </button>
                   </div>
@@ -75,7 +75,7 @@
                 <div class="row mt-1" *ngIf="ingrediente.nome === '' || ingrediente.quantita < 0.1 || ingrediente.tipoQuantita === ''">
                   <div class="col-md-12">
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
-                      <i class="bi bi-exclamation-triangle-fill me-2"></i> Tutti i campi devono essere riempiti
+                      <i class="bi bi-exclamation-triangle-fill me-2"></i> Tutti i campi devono essere compilati
                     </div>
                   </div>
                 </div>
@@ -83,21 +83,21 @@
             </ul>
 
             <div class="d-flex justify-content-end">
-              <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                <i class="bi bi-trash"></i> Elimina Ricetta
-              </button>
-              <button class="btn btn-primary" (click)="saveChanges()" [disabled]="!form.valid">
+              <button class="btn btn-outline-dark btn-sm rounded-pill" (click)="saveChanges()" [disabled]="!form.valid">
                 <i class="bi bi-check-circle"></i> Salva
               </button>
-              <button class="btn btn-secondary ms-2" (click)="cancelEdit()">
+              <button class="btn btn-outline-secondary btn-sm rounded-pill" (click)="cancelEdit()">
                 <i class="bi bi-x-circle"></i> Annulla
+              </button>
+              <button class="btn btn-outline-danger btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                <i class="bi bi-trash"></i> Elimina Ricetta
               </button>
             </div>
           </form>
 
           <!-- Pulsante Modifica -->
           <div class="d-flex justify-content-end" *ngIf="isAuthor() && !editMode">
-            <button class="btn btn-primary" (click)="toggleEditMode()">
+            <button class="btn btn-outline-dark btn-sm rounded-pill" (click)="toggleEditMode()">
               <i class="bi bi-pencil"></i> Modifica
             </button>
           </div>

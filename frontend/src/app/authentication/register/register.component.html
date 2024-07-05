@@ -76,12 +76,12 @@
           </div>
           <!-- Pulsante Registrati -->
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg animate__animated animate__fadeIn" [disabled]="!registrazioneForm.valid || success">Registrati</button>
+            <button type="submit" class="btn btn-outline-dark btn-sm rounded-pill btn-lg animate__animated animate__fadeIn" [disabled]="!registrazioneForm.valid || success">Registrati</button>
           </div>
           <div class="mt-3">
             <!-- Messaggio di errore per password non corrispondenti -->
             <div *ngIf="!success && registrazioneForm.valid && confirmPassword !== '' && !passwordsMatch()" class="alert alert-warning d-flex align-items-center animate__animated animate__fadeIn" role="alert">
-              <i class="bi bi-exclamation-circle"></i> &nbsp; Le password inserite non corrispondono!
+              <i class="bi text-bg-dark bi bi-exclamation-circle"></i> &nbsp; Le password inserite non corrispondono!
             </div>
             <!-- Messaggio di errore per email non valida -->
             <div *ngIf="!success && registrazioneForm.valid && !emailValid && passwordsMatch()" class="alert alert-warning d-flex align-items-center animate__animated animate__fadeIn" role="alert">
